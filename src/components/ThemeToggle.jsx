@@ -8,7 +8,7 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       className="btn btn-secondary"
     >
-      {theme === "light" ? "Dark Mode" : "Light Mode"}
+      {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
     </button>
   );
 }

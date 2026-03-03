@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
 import { useAppContext } from "../context/AppContext";
@@ -7,42 +7,80 @@ export default function Navbar() {
   const cartItems = useSelector((state) => state.cart.items);
   const { toggleTheme } = useAppContext();
 
-  // useMemo for total quantity
   const totalQuantity = useMemo(() => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   }, [cartItems]);
 
   return (
-    <nav className="navbar navbar-dark bg-dark px-4 py-3 w-100">
-      <div className="container-fluid">
-        <Link className="navbar-brand text-light fw-bold" to="/">
+    <nav className="navbar px-4 py-3">
+      <div className="container-fluid d-flex justify-content-between align-items-center">
+        
+        <NavLink to="/" className="navbar-brand fw-bold text-white">
           EXP5
-        </Link>
+        </NavLink>
 
         <div className="d-flex align-items-center">
-          <Link className="text-light me-4 text-decoration-none" to="/">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link text-white"
+            }
+          >
             Home
-          </Link>
+          </NavLink>
 
-          <Link className="text-light me-4 text-decoration-none" to="/cart">
-            Cart ({totalQuantity})
-          </Link>
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link text-white"
+            }
+          >
+            Cart
+            <span className="badge bg-info ms-2">
+              {totalQuantity}
+            </span>
+          </NavLink>
 
-          <Link className="text-light me-4 text-decoration-none" to="/reports">
+          <NavLink
+            to="/reports"
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link text-white"
+            }
+          >
             Reports
-          </Link>
+          </NavLink>
 
-          <Link className="text-light me-4 text-decoration-none" to="/dashboard">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link text-white"
+            }
+          >
             Dashboard
-          </Link>
+          </NavLink>
 
-          <Link className="text-light me-4 text-decoration-none" to="/login">
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive
+                ? "nav-link active-link"
+                : "nav-link text-white"
+            }
+          >
             Login
-          </Link>
+          </NavLink>
 
           <button
             onClick={toggleTheme}
-            className="btn btn-outline-light btn-sm"
+            className="btn btn-outline-light btn-sm ms-3"
           >
             Toggle Theme
           </button>
