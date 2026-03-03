@@ -7,18 +7,11 @@ export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
   };
 
   return (
-    <AppContext.Provider
-      value={{
-        theme,
-        toggleTheme,
-        user,
-        setUser,
-      }}
-    >
+    <AppContext.Provider value={{ theme, toggleTheme, user, setUser }}>
       <div className={theme}>{children}</div>
     </AppContext.Provider>
   );
